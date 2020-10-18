@@ -1,0 +1,7 @@
+{
+  "isParallel": "true",
+  "reportName": "report",
+  "indexFile": "index.html",
+  "fileDir": "./report",
+  "indexFileCharset": "UTF-8"
+}

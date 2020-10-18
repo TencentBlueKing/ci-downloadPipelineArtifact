@@ -1,0 +1,94 @@
+{
+  "atomCode": "downloadPipelineArtifact",
+  "execution": {
+    "packagePath": "downloadPipelineArtifact-jar-with-dependencies.jar",
+    "language": "java",
+    "minimumVersion": "1.8",
+    "demands": [],
+    "target": "$bk_java_path -jar downloadPipelineArtifact-jar-with-dependencies.jar -Dfile.encoding=utf8"
+  },
+  "input": {
+    "pipeLineId": {
+      "label": "流水线",
+      "placeholder": "请选择",
+      "default": "",
+      "type": "select-input",
+      "optionsConf": {
+        "searchable": true,
+        "multiple": false,
+        "url": "http://api.devops.oa.com/process/api/user/archive/{projectId}/getAllPipelines?page=1&pagesize=-1",
+        "paramId": "pipelineId",
+        "paramName": "pipelineName"
+      },
+      "required": true
+    },
+    "buildNo": {
+      "label": "构建号",
+      "type": "enum-input",
+      "default": true,
+      "list": [
+        {
+          "label": "最新构建号",
+          "value": true
+        },
+        {
+          "label": "指定构建号",
+          "value": false
+        }
+      ],
+      "required": true
+    },
+    "isContinue": {
+      "text": "是否提取最近构建成功的文件",
+      "type": "atom-checkbox",
+      "default": false,
+      "desc": "最新流水线构建号如果失败可能导致拉取不到构件，这时可以选择此选项选取最新构建成功的构件",
+      "rely": {
+        "operation": "AND",
+        "expression": [
+          {
+            "key": "buildNo",
+            "value": true
+          }
+        ]
+      }
+    },
+    "buildNoSelector": {
+      "placeholder": "请选择",
+      "default": "",
+      "type": "select-input",
+      "optionsConf": {
+        "searchable": true,
+        "multiple": false,
+        "url": "http://api.devops.oa.com/process/api/user/archive/{projectId}/pipelines/{pipeLineId}/getAllBuildNo?page=1&pagesize=-1",
+        "paramId": "key",
+        "paramName": "key"
+      },
+      "rely": {
+        "operation": "AND",
+        "expression": [
+          {
+            "key": "buildNo",
+            "value": false
+          }
+        ]
+      }
+    },
+    "srcPath": {
+      "required": true,
+      "label": "待下载文件",
+      "placeholder": "支持*通配符",
+      "default": "",
+      "desc": " 版本仓库构件的路径，例如：tmp/aa.txt",
+      "type": "vuex-input"
+    },
+    "destPath": {
+      "label": "下载到本地路径",
+      "placeholder": "不填则为当前工作空间路径,\n注意所填路径会默认拼接工作空间路径，第三方构建机请先设置工作空间目录",
+      "default": "",
+      "desc": " 下载到本地的路径，例如：home/data/  ",
+      "type": "vuex-input"
+    }
+  }
+}
+
