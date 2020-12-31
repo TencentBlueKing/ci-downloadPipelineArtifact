@@ -16,7 +16,7 @@
       "optionsConf": {
         "searchable": true,
         "multiple": false,
-        "url": "http://api.devops.oa.com/process/api/user/archive/{projectId}/getAllPipelines?page=1&pagesize=-1",
+        "url": "/process/api/user/archive/{projectId}/getAllPipelines?page=1&pagesize=-1",
         "paramId": "pipelineId",
         "paramName": "pipelineName"
       },
@@ -60,7 +60,7 @@
       "optionsConf": {
         "searchable": true,
         "multiple": false,
-        "url": "http://api.devops.oa.com/process/api/user/archive/{projectId}/pipelines/{pipeLineId}/getAllBuildNo?page=1&pagesize=-1",
+        "url": "/process/api/user/archive/{projectId}/pipelines/{pipeLineId}/getAllBuildNo?page=1&pagesize=-1",
         "paramId": "key",
         "paramName": "key"
       },
@@ -86,7 +86,7 @@
       "label": "下载到本地路径",
       "placeholder": "不填则为当前工作空间路径,\n注意所填路径会默认拼接工作空间路径，第三方构建机请先设置工作空间目录",
       "default": "",
-      "desc": " 下载到本地的路径，例如：home/data/  ",
+      "desc": "下载到本地的路径，例如：home/data/",
       "type": "vuex-input"
     }
   }
